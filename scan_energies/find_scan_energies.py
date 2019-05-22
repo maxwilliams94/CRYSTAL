@@ -1,3 +1,4 @@
+#!/mnt/storage/home/mw12315/.local/bin/python3
 from sys import argv
 
 if len(argv) == 1:
@@ -11,7 +12,7 @@ print("{:5s}\t{:19s}\t{:6}".format("SCAN","Energy / AU","Points"))
 
 with open(fileIn,'r') as f:
     o = open("{}_Escan.csv".format(fileIn),'w')
-    write("{:5s},{:19s},{:6}\n".format("SCAN","Energy / AU","Points"))
+    o.write("{:5s},{:19s},{:6}\n".format("SCAN","Energy / AU","Points"))
     nScans = 0
     for line in f:
         if "OPT END - CONVERGED" in line:
