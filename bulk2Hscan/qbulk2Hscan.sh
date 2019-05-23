@@ -11,6 +11,7 @@
 #SBATCH --mail-type=ALL
 #SBATCH --mail-user=mw12315@bristol.ac.uk
 
+SCRIPTDIR="${HOME}/scripts/CRYSTAL/bulk2Hscan"
 WORKDIR="$SLURM_SUBMIT_DIR"
 BULKDIR="$WORKDIR/${1}"
 GEOMDIR="$WORKDIR/${2}"
@@ -49,7 +50,7 @@ eval "cp /dev/null ${WORKDIR}/slurm*"
 eval "rm -f *pe*"
 
 # Update Lattice Parameter in GEOM INPUT FILE (and hydrogen insertion position
-eval "python3 $HOME/scripts/bulk2geomlayers.py ${BULKDIR} ${GEOMDIR}"
+eval "python3 ${SCRIPTDIR}/bulk2geomlayers.py ${BULKDIR} ${GEOMDIR}"
 
 #############################
 # CHEAP GEOMETRY OPTIMISATION
@@ -110,7 +111,10 @@ eval "rm -f ${CRADICAL2DIR}/*pe*"
 eval "cp /dev/null ${WORKDIR}/slurm*"
 echo "H SCAN START"
 cd "${HSCANDIR}"
-eval "python3 /mnt/storage/home/mw12315/scripts/layers-rad2HScan.py ${LAYERSDIR} ${CRADICAL2DIR} ${HSCANDIR}"
+eval "python3 $SCRIPTDIR/layers-rad2HScan.py ${LAYERSDIR} ${CRADICAL2DIR} ${HSCANDIR}"
+
+eval "${CRYSTAL}
+
 eval "mv ${WORKDIR}/slurm* OUTPUT"
 eval "rm -f ${HSCANDIR}/*pe*"
 
