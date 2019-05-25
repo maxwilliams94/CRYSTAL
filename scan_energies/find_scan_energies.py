@@ -35,7 +35,7 @@ with open(fileIn,'r') as f:
                     pass
 
             print("{:5}\t{:15.10e}\t{:6d}\t{:10.1f}\t{:10.1f}".format(nScans,float(nums[0]),int(nums[1]),round(te_lapse/60,1),round((te_lapse - last_time)/60,1)))
-            o.write("{:5},{:15.10e},{:6d}\t{:10.1f}\t{:10.1f}\n".format(nScans,float(nums[0]),int(nums[1]),round(te_lapse/60,1),round((te_lapse - last_time)/60,1)))
+            o.write("{:5}{:15.10e}{:6d}\t{:10.1f}\t{:10.1f}\n".format(nScans,float(nums[0]),int(nums[1]),round(te_lapse/60,1),round((te_lapse - last_time)/60,1)))
             last_time = te_lapse
 
 print("Output to: {}".format(o.name))
